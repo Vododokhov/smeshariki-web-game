@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Яркие детские цвета для игры Смешарики */
+    --background: 195 100% 95%;
+    --foreground: 220 65% 15%;
+    
+    /* Основные игровые цвета */
+    --game-primary: 340 75% 60%; /* Розовый как у Нюши */
+    --game-secondary: 45 95% 55%; /* Желтый как у Лосяша */
+    --game-accent: 125 60% 50%; /* Зеленый как трава */
+    --game-info: 200 80% 60%; /* Голубой как у Кроша */
+    --game-success: 120 60% 50%; /* Зеленый успеха */
+    --game-warning: 35 85% 60%; /* Оранжевый предупреждения */
+    --game-error: 355 75% 60%; /* Красный ошибки */
+    
+    /* Градиенты для фонов */
+    --gradient-sky: linear-gradient(135deg, hsl(200 100% 85%), hsl(220 100% 90%));
+    --gradient-rainbow: linear-gradient(45deg, 
+      hsl(340 75% 60%), 
+      hsl(25 85% 60%), 
+      hsl(45 95% 55%), 
+      hsl(125 60% 50%), 
+      hsl(200 80% 60%), 
+      hsl(260 75% 60%));
+    --gradient-warm: linear-gradient(135deg, hsl(25 85% 60%), hsl(45 95% 55%));
+    
+    /* Анимации и эффекты */
+    --bounce-duration: 0.6s;
+    --wiggle-duration: 0.5s;
+    --glow-shadow: 0 0 20px hsl(var(--game-primary) / 0.5);
+    --card-shadow: 0 8px 32px hsl(220 25% 50% / 0.15);
+    
+    --background: 195 100% 95%;
+    --foreground: 220 65% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+/* Кастомные анимации для игр */
+  
+/* Shimmer animation for matched cards */
+@keyframes shimmer {
+  0%, 100% {
+    border-color: hsl(142 76% 36%);
+    box-shadow: 0 0 10px hsl(142 76% 36% / 0.5), 0 0 20px hsl(142 76% 36% / 0.3);
+  }
+  50% {
+    border-color: hsl(142 76% 56%);
+    box-shadow: 0 0 20px hsl(142 76% 56% / 0.8), 0 0 30px hsl(142 76% 56% / 0.4);
+  }
+}
+
+.shimmer-border {
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-width: 3px;
+}
+
+/* Modal animations */
+@keyframes slide-in-from-top {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation-fill-mode: both;
+}
+
+.slide-in-from-top-4 {
+  animation: slide-in-from-top 0.5s ease-out;
+}
+
+.zoom-in-50 {
+  animation: zoom-in 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.zoom-in-95 {
+  animation: zoom-in 0.3s ease-out;
+}
+
+.fade-in-0 {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Игровые анимации и эффекты */
+@layer utilities {
+  /* Анимации персонажей */
+  .animate-bounce-character {
+    animation: bounce-character var(--bounce-duration) ease-in-out infinite;
+  }
+  
+  .animate-wiggle {
+    animation: wiggle var(--wiggle-duration) ease-in-out infinite;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-spin-slow {
+    animation: spin 3s linear infinite;
+  }
+  
+  /* Эффекты наведения */
+  .game-button {
+    @apply transition-all duration-300 ease-out transform hover:scale-110 active:scale-95;
+    box-shadow: var(--card-shadow);
+  }
+  
+  .game-button:hover {
+    box-shadow: var(--glow-shadow);
+  }
+  
+  .character-card {
+    @apply transition-all duration-300 ease-out cursor-pointer;
+    @apply hover:scale-105 hover:shadow-xl;
+  }
+  
+  /* Градиентные фоны */
+  .bg-gradient-sky {
+    background: var(--gradient-sky);
+  }
+  
+  .bg-gradient-rainbow {
+    background: var(--gradient-rainbow);
+  }
+  
+  .bg-gradient-warm {
+    background: var(--gradient-warm);
+  }
+}
+
+@keyframes bounce-character {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px hsl(var(--game-primary) / 0.5);
+  }
+  to {
+    box-shadow: 0 0 20px hsl(var(--game-primary) / 0.8), 0 0 30px hsl(var(--game-secondary) / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+  }
+}
